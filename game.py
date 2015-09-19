@@ -23,7 +23,7 @@ def load_png(name):
 
 
 ## Objects
-class bullet_obj(pygame.sprite.Sprite):
+class mixtape_obj(pygame.sprite.Sprite):
 
     move_dist = 15
 
@@ -33,7 +33,7 @@ class bullet_obj(pygame.sprite.Sprite):
         self.y = y
 
         # info about image
-        self.image, self.rect = load_png('bullet.png')
+        self.image, self.rect = load_png('mixtape.png')
         self.height = self.rect.height
         self.width = self.rect.width
 
@@ -64,9 +64,9 @@ class player_obj(pygame.sprite.Sprite):
         self.max_width = screen.get_width()
         self.area = screen.get_rect()
 
-        # bullet info
-        self.bullets = []
-        self.bullet_tally = level * 12
+        # mixtape info
+        self.mixtapes = []
+        self.mixtapes_remaining = level * 12
 
 
     def moveup(self):
@@ -89,20 +89,20 @@ class player_obj(pygame.sprite.Sprite):
         if self.x >= self.move_dist:
             self.x -= self.move_dist
 
-    def movebullets(self):
-        for b in self.bullets:
-            b.move()
+    def movemixtapes(self):
+        for tape in self.mixtapes:
+            tape.move()
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
-        for b in self.bullets:
-            surface.blit(b.image, (b.x, b.y))
+        for tape in self.mixtapes:
+            surface.blit(tape.image, (tape.x, tape.y))
 
     def fire(self):
-        if self.bullet_tally > 0:
-            b = bullet_obj(self.x + self.width, self.y + self.height/3)
-            self.bullets.append(b)
-            self.bullet_tally -= 1
+        if self.mixtapes_remaining > 0:
+            b = mixtape_obj(self.x + self.width, self.y + self.height/3)
+            self.mixtapes.append(b)
+            self.mixtapes_remaining -= 1
 
 
 
@@ -182,7 +182,7 @@ def main():
         player.movedown() if movedown else None
         player.moveright() if moveright else None
         player.moveleft() if moveleft else None
-        player.movebullets()
+        player.movemixtapes()
 
         screen.blit(background, (0, 0))
         playersprite.update()
