@@ -12,7 +12,7 @@ import artmanager
 
 def load_png(name):
     """ Load image and return image object"""
-    fullname = os.path.join('data', name)
+    fullname = os.path.join('data', 'images', name)
     try:
         image = pygame.image.load(fullname)
         if image.get_alpha is None:
@@ -26,7 +26,7 @@ def load_png(name):
 
 def load_wav(name):
     """ Load sound file and return object """    
-    fullname = os.path.join('data', name)
+    fullname = os.path.join('data', 'audio', name)
     return fullname
 
 
@@ -233,7 +233,7 @@ def main():
 
     #Background music
     if _audio_enabled:
-        pygame.mixer.music.load(os.path.join('data', 'rickrosslow.ogg'))
+        pygame.mixer.music.load(load_wav('rickrosslow.ogg'))
         pygame.mixer.music.play(-1)
         lose_sound = pygame.mixer.Sound(load_wav('stop.wav'))
         level_sound = pygame.mixer.Sound(load_wav('superhot.wav'))
@@ -248,7 +248,7 @@ def main():
     background = pygame.Surface(screen.get_size())
     background = background.convert()
     # background.fill((250, 250, 250))
-    background = pygame.image.load("data/darktown.png").convert()
+    background = pygame.image.load('data/images/darktown.png').convert()
 
     # Initialize player
     player = player_obj(0, _height, 1)
@@ -263,6 +263,16 @@ def main():
     font = pygame.font.Font(None, 32)
     mixtape_font = pygame.font.Font(None, 48)
     title_font = pygame.font.Font(None, 162)
+    title_font2 = pygame.font.Font(None, 112)
+
+    # Intro text
+    text = title_font.render("I'm not a rapper", 1, (250,250,250))
+    textpos = text.get_rect()
+    textpos.centerx = _width / 2
+    textpos.centery = _height/ 2
+    screen.blit(text, textpos)
+    pygame.display.flip()
+    pygame.time.wait(3000)
 
     # Blit everything to the screen
     screen.blit(background, (-500, -500))
@@ -454,7 +464,12 @@ def main():
     text = title_font.render("Your mixtape flopped!", 1, (255,20,0))
     textpos = text.get_rect()
     textpos.centerx = _width / 2
-    textpos.centery = _height/ 2
+    textpos.centery = _height/ 2 - 75
+    text2 = title_font2.render("Hater Count: {}".format(enemy_count), 1, (255,20,0))
+    textpos2 = text2.get_rect()
+    textpos2.centerx = _width / 2
+    textpos2.centery = _height/ 2 + 75
+    screen.blit(text2, textpos2)
     screen.blit(text, textpos)
     pygame.display.flip()
     if _audio_enabled:
