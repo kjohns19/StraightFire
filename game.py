@@ -198,7 +198,7 @@ class player_obj(pygame.sprite.Sprite):
         alive_enemies = [e for e in enemies if e.on_fire is -1]
         for tape in self.mixtapes:
             for e in alive_enemies:
-                if tape.rect.colliderect(e.rect):
+                if pygame.sprite.collide_mask(tape, e):
                     e.on_fire = 25
                     tape.consumed = True
                     hit_count += 1
@@ -207,7 +207,7 @@ class player_obj(pygame.sprite.Sprite):
 
     def check_collisions(self, enemies):
         alive_enemies = [e for e in enemies if e.on_fire is -1]
-        return self.rect.collidelist(alive_enemies) != -1
+        return pygame.sprite.spritecollideany(self, alive_enemies, pygame.sprite.collide_mask)
 
 
 ## Running the game
