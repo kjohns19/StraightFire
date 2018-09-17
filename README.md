@@ -17,6 +17,6 @@ Xbox 360 controller:
 * `B` to taunt your haters
 
 ## Screenshots
-![](data/screenshot1.png)
-![](data/screenshot2.png)
-![](data/screenshot3.png)
+![](data/screenshots/screenshot1.png)
+![](data/screenshots/screenshot2.png)
+![](data/screenshots/screenshot3.png)
