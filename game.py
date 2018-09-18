@@ -230,6 +230,7 @@ def main():
     pygame.event.set_blocked(pygame.MOUSEMOTION)
     pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
     pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+    pygame.mouse.set_visible(False)
 
     #Background music
     if _audio_enabled:
@@ -475,6 +476,7 @@ def main():
     if _audio_enabled:
         lose_sound.play(loops=0, maxtime=0)
     pygame.time.wait(2000)
-    
-if __name__ == '__main__': main()
 
+
+if __name__ == '__main__':
+    main()
