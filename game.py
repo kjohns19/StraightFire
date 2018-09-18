@@ -168,7 +168,7 @@ class player_obj(pygame.sprite.Sprite):
     def move_mixtapes(self):
         for tape in self.mixtapes:
             tape.move()
-        mixtapes = [m for m in self.mixtapes if m.rect.x < self.max_width]
+        self.mixtapes = [m for m in self.mixtapes if m.rect.x < self.max_width]
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
