@@ -120,7 +120,7 @@ class player_obj(pygame.sprite.Sprite):
         self.area = screen.get_rect()
 
         # mixtape info
-        self.level = 1
+        self.level = level
         self.mixtapes = []
         self.mixtapes_remaining = 4 + (self.level * 3)
 
