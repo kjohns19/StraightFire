@@ -1,15 +1,16 @@
 import os
-from Tkinter import Tk
-from tkFileDialog import askopenfilename
-import tkMessageBox
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 
 from PIL import Image, ImageDraw
 
+
 def get_user_art():
     Tk().withdraw() #stop Tk's root window
-    custom_art = tkMessageBox.askyesno(title="StraightFire", \
-            message="Choose your own mixtape art?", \
-            default=tkMessageBox.YES, icon=tkMessageBox.QUESTION)
+    custom_art = messagebox.askyesno(title="StraightFire",
+            message="Choose your own mixtape art?",
+            default=messagebox.YES, icon=messagebox.QUESTION)
 
     if custom_art:
         filename = askopenfilename()
@@ -41,6 +42,6 @@ def add_alpha(filepath):
     im.putalpha(mask)
     im.save(filepath)
 
-if __name__ == '__main__':
-    print get_user_art()
 
+if __name__ == '__main__':
+    print(get_user_art())

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import pygame
 import math
@@ -19,9 +19,9 @@ def load_png(name):
             image = image.convert()
         else:
             image = image.convert_alpha()
-    except pygame.error, message:
-        print 'Cannot load image:', fullname
-        raise SystemExit, message
+    except pygame.error as message:
+        print('Cannot load image:', fullname)
+        raise SystemExit(message)
     return image, image.get_rect()
 
 def load_wav(name):
@@ -107,10 +107,10 @@ class player_obj(pygame.sprite.Sprite):
         self.height = self.rect.height
         self.width = self.rect.width
         self.x = x
-        self.y = (y - self.height) / 2
+        self.y = (y - self.height) // 2
         self.max_y = y
         self.rect.left = x
-        self.rect.top = (y - self.height) / 2
+        self.rect.top = (y - self.height) // 2
         self.move_dist = int(y * 0.012)
 
         # info about environment
@@ -156,7 +156,7 @@ class player_obj(pygame.sprite.Sprite):
             self.y = self.max_height - self.height
 
     def move_right(self):
-        if self.x <= 3*self.max_width/5:
+        if self.x <= 3 * self.max_width // 5:
             self.rect.x += self.move_dist
             self.x += self.move_dist
 
@@ -177,7 +177,7 @@ class player_obj(pygame.sprite.Sprite):
 
     def fire(self):
         if self.mixtapes_remaining > 0:
-            b = mixtape_obj(self.x + self.width, self.y + self.height/3, self.max_y)
+            b = mixtape_obj(self.x + self.width, self.y + self.height // 3, self.max_y)
             self.mixtapes.append(b)
             self.mixtapes_remaining -= 1
             if _audio_enabled:
@@ -269,8 +269,8 @@ def main():
     # Intro text
     text = title_font.render("I'm not a rapper", 1, (250,250,250))
     textpos = text.get_rect()
-    textpos.centerx = _width / 2
-    textpos.centery = _height/ 2
+    textpos.centerx = _width // 2
+    textpos.centery = _height // 2
     screen.blit(text, textpos)
     pygame.display.flip()
     pygame.time.wait(3000)
@@ -379,7 +379,7 @@ def main():
                 if event.key == K_LEFT:
                     moveleft, leftkey = False, False
             elif event.type == USEREVENT+1:
-                wave_mult = (level / 3) + 1
+                wave_mult = (level // 3) + 1
                 for i in range(0, wave_mult):
                     enemy = enemy_obj(_width, random.randrange(0,_height-_player_height,30),
                         _height, random.randrange(-level, level))
@@ -417,8 +417,8 @@ def main():
             # show levelup screen
             text = title_font.render("Level {}".format(level),1,(250,250,250))
             textpos = text.get_rect()
-            textpos.centerx = _width / 2
-            textpos.centery = _height/ 2 - 75
+            textpos.centerx = _width // 2
+            textpos.centery = _height // 2 - 75
             screen.blit(text, textpos)
             if _audio_enabled:
                 level_sound.play(loops=0, maxtime=0)
@@ -426,8 +426,8 @@ def main():
             pygame.time.wait(1500)
             text2 = title_font.render("Go!".format(level),1,(250,250,250))
             textpos2 = text2.get_rect()
-            textpos2.centerx = _width / 2
-            textpos2.centery = _height/ 2 + 75
+            textpos2.centerx = _width // 2
+            textpos2.centery = _height // 2 + 75
             screen.blit(text, textpos)
             screen.blit(text2, textpos2)
             pygame.display.flip()
@@ -464,12 +464,12 @@ def main():
 
     text = title_font.render("Your mixtape flopped!", 1, (255,20,0))
     textpos = text.get_rect()
-    textpos.centerx = _width / 2
-    textpos.centery = _height/ 2 - 75
+    textpos.centerx = _width // 2
+    textpos.centery = _height // 2 - 75
     text2 = title_font2.render("Hater Count: {}".format(enemy_count), 1, (255,20,0))
     textpos2 = text2.get_rect()
-    textpos2.centerx = _width / 2
-    textpos2.centery = _height/ 2 + 75
+    textpos2.centerx = _width // 2
+    textpos2.centery = _height // 2 + 75
     screen.blit(text2, textpos2)
     screen.blit(text, textpos)
     pygame.display.flip()
