@@ -1,6 +1,6 @@
 # StraightFire
 
-Inspired by the YouTube sensation [Supa Hot Fire](https://www.youtube.com/watch?v=x35P2wTX0zg).
+Inspired by the YouTube sensation [Supa Hot Fire](https://youtu.be/MeB3eYk1Ze0)
 
 Fire mixtapes at your haters and gain popularity.
 
